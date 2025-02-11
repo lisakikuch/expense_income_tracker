@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,7 +8,9 @@ const transactionRoutes = require('./routes/transactions');
 const app = express();
 const PORT = 3001;
 
-mongoose.connect('mongodb://127.0.0.1:27017/expenseTracker', {
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/expenseTracker';
+
+mongoose.connect(MONGO_URI, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
